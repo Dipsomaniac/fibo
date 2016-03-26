@@ -52,6 +52,7 @@ def magic(request):
 
     response = muffin.StreamResponse(headers={'Content-Type': 'application/json'}).start(request)
     size, size_min, size_step = app.cfg.CHUNK_SIZE, app.cfg.CHUNK_SIZE_MIN, app.cfg.CHUNK_SIZE_STEP
+    wait_time = app.cfg.CHUNK_WAIT_TIME
 
     # If num is small we use precalculated results
     if num <= size:
@@ -65,9 +66,12 @@ def magic(request):
             yield from response.write(b', ')
             todo = size if size <= num else num
             num -= todo
-            a, b, result = yield from asyncio.ensure_future(fibo_coro(a, b, todo))
+            time = app.loop.time()
+            a, b, result = yield from asyncio.ensure_future(fibo_coro(a, b, todo), loop=app.loop)
             yield from response.write(', '.join(map(str, result)).encode())
-            size = max(size-size_step, size_min)
+            diff = app.loop.time() - time
+            if diff > wait_time:
+                size = max(size-size_step, size_min)
 
     yield from response.write(b']')
     yield from response.write_eof()
