@@ -3,7 +3,7 @@ import asyncio
 import muffin
 
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __project__ = "fibo"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "MIT"
