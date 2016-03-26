@@ -17,9 +17,9 @@ clean:
 	@rm -rf build/ dist/ docs/_build *.egg-info
 	@find $(CURDIR) -name "*.py[co]" -delete
 	@find $(CURDIR) -name "*.orig" -delete
-	@find $(CURDIR)/$(MODULE) -name "*.c" -delete
-	@find $(CURDIR)/$(MODULE) -name "*.so" -delete
-	@find $(CURDIR)/$(MODULE) -name "__pycache__" | xargs rm -rf
+	@find $(CURDIR)/$(PROJECT) -name "*.c" -delete
+	@find $(CURDIR)/$(PROJECT) -name "*.so" -delete
+	@find $(CURDIR)/$(PROJECT) -name "__pycache__" | xargs rm -rf
 
 # ==============
 #  Bump version
