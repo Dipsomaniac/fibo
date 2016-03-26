@@ -4,7 +4,7 @@ import logging
 import muffin
 
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 __project__ = "fibo"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "MIT"
