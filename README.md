@@ -1,4 +1,4 @@
-FIBO 0.0.5
+FIBO 0.0.6
 ==========
 
 **The project provides a RESTful web service.**
