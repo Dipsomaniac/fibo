@@ -51,21 +51,23 @@ def magic(request):
         raise muffin.HTTPBadRequest(reason='Bad number')
 
     response = muffin.StreamResponse(headers={'Content-Type': 'application/json'}).start(request)
+    size, size_min, size_step = app.cfg.CHUNK_SIZE, app.cfg.CHUNK_SIZE_MIN, app.cfg.CHUNK_SIZE_STEP
 
     # If num is small we use precalculated results
-    if num <= app.cfg.CHUNK_SIZE:
+    if num <= size:
         yield from response.write(', '.join(map(str, FIBO[:num])).encode())
 
     else:
         # First chunk is already calculated
         yield from response.write(', '.join(map(str, FIBO)).encode())
-        a, b, num = A, B, num - app.cfg.CHUNK_SIZE
+        a, b, num = A, B, num - size
         while num:
             yield from response.write(b', ')
-            todo = app.cfg.CHUNK_SIZE if app.cfg.CHUNK_SIZE <= num else num
+            todo = size if size <= num else num
             num -= todo
             a, b, result = yield from asyncio.ensure_future(fibo_coro(a, b, todo))
             yield from response.write(', '.join(map(str, result)).encode())
+            size = max(size-size_step, size_min)
 
     yield from response.write(b']')
     yield from response.write_eof()
