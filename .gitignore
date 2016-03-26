@@ -1,5 +1,7 @@
 *.deb
 *.egg-info
+*.c
+*.so
 /*.tar
 /.cache
 /.ropeproject

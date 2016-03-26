@@ -10,7 +10,7 @@ the sequence [0, 1, 1, 2, 3].
 Requirements
 ------------
 
-You should have [Docker](https://docker.io) installed.
+Ensure that you have [Docker](https://docker.io) installed.
 
 Installation
 ------------
@@ -24,6 +24,7 @@ Build docker container from repository
 ```
 
 Or pull it as 'horneds/fibo'.
+
 ```sh
 
     $ docker pull
@@ -35,8 +36,33 @@ Usage
 -----
 
 Run the container with choosen port (For example port 8000):
+
 ```sh
 
-    $ docker run -p 8000:80 horneds/fibo
+    $ docker run -p 8000:8000 horneds/fibo
+
+```
+
+Make API requests:
+
+```sh
+
+    $ curl <docker_ip>:8000/
+    $ curl <docker_ip>:8000/-40
+    $ curl <docker_ip>:8000/100
+
+```
+
+Enjoy yourself.
+
+Run tests
+---------
+
+Ensure that you have python3 and virtualenv installed.
+Run the project's tests:
+
+```sh
+
+    $ make test
 
 ```

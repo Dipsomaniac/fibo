@@ -6,4 +6,4 @@ Cython              == 0.23.4
 cchardet            == 1.0.0
 
 # The project
-muffin              == 0.6.0
+muffin              == 0.7.0

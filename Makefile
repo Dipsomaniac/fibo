@@ -1,4 +1,5 @@
 PROJECT 	?= fibo
+HOST		?= horneds
 VIRTUAL_ENV 	?= env
 BUILD_TAG 	?= $(shell cat $(CURDIR)/.version)
 
@@ -57,13 +58,13 @@ version:
 
 .PHONY: docker
 docker: clean
-	docker build -t $(PROJECT):$(BUILD_TAG) $(CURDIR)
-	docker tag $(PROJECT):$(BUILD_TAG) $(PROJECT):latest
+	docker build -t $(HOST)/$(PROJECT):$(BUILD_TAG) $(CURDIR)
+	docker tag $(HOST)/$(PROJECT):$(BUILD_TAG) $(HOST)/$(PROJECT):latest
 
 RUN = 
 .PHONY: docker
 docker-run: 
-	@docker run --rm -it -p 5000:5000 -v $(CURDIR)/data:/app/data --name $(PROJECT) $(PROJECT) $(RUN)
+	@docker run --rm -it -p 8000:8000 --name $(PROJECT) $(HOST)/$(PROJECT) $(RUN)
 
 docker-clean: 
 	@docker rm -v $(shell docker ps -a -q -f status=exited) || true
