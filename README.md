@@ -27,7 +27,7 @@ Or pull it as 'horneds/fibo'.
 
 ```sh
 
-    $ docker pull
+    $ docker pull horneds/fibo
 
 ```
 
