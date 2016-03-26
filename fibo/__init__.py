@@ -1,4 +1,5 @@
 import asyncio
+import logging
 
 import muffin
 
@@ -11,6 +12,8 @@ __license__ = "MIT"
 
 # Initialize the application
 app = muffin.Application('fibo', CONFIG='fibo.config', VERSION=__version__)
+
+logging.info('Start application %s, chunk size: %s', __version__, app.cfg.CHUNK_SIZE)
 
 
 # Send current version in headers
