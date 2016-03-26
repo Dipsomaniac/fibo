@@ -1,0 +1,11 @@
+*.deb
+*.egg-info
+/*.tar
+/.cache
+/.ropeproject
+/build
+/env
+/node_modules
+/ops/config
+/todo.txt
+__pycache__

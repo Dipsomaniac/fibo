@@ -1,0 +1,7 @@
+*.deb
+*.tar
+.git
+env
+tests
+.benchmarks
+.cache

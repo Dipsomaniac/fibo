@@ -1,0 +1,9 @@
+-r requirements.txt
+-e .
+
+ipdb
+mock
+pytest
+pytest-benchmark
+pytest-sugar
+webtest
